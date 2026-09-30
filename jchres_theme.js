@@ -750,7 +750,12 @@ async function writeDeck(pres, fileName) {
       .replace(/<a:buSzPct val="100000"\/><a:buChar char=" "\/>/g, "<a:buNone/>")
       // 箇条書き記号（■）をアクセント色・やや小さめにする
       .replace(/<a:buSzPct val="100000"\/><a:buChar char="&#x25A0;"\/>/g,
-        `<a:buClr><a:srgbClr val="${COLORS.sky}"/></a:buClr><a:buSzPct val="75000"/><a:buChar char="&#x25A0;"/>`);
+        `<a:buClr><a:srgbClr val="${COLORS.sky}"/></a:buClr><a:buSzPct val="75000"/><a:buChar char="&#x25A0;"/>`)
+      // PptxGenJS はマスターのプレースホルダーを全スライドに空のまま自動追加する。
+      // 編集画面に「テキストを入力」が残るため、文字の入っていないプレースホルダーを削除する
+      // （マスター側には残すので、PowerPoint の「新しいスライド」では従来どおり使える）
+      .replace(/<p:sp>(?:(?!<\/p:sp>)[\s\S])*?<p:ph\s[^>]*type="(?:body|title)"(?:(?!<\/p:sp>)[\s\S])*?<\/p:sp>/g,
+        (sp) => (/<a:t>[^<]+<\/a:t>/.test(sp) ? sp : ""));
     zip.file(n, xml);
   }
   const out = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
