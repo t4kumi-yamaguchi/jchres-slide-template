@@ -1,0 +1,17 @@
+{
+  "name": "jchres-slide-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PptxGenJS slide template for JCHRES (Japan Center for Healthcare Research, Education and Support)",
+  "main": "jchres_theme.js",
+  "type": "commonjs",
+  "scripts": {
+    "check": "node --check jchres_theme.js && node --check examples/company_profile.js && node --check examples/layout_catalog.js",
+    "example": "node examples/company_profile.js && node examples/layout_catalog.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "pptxgenjs": "^4.0.1"
+  }
+}

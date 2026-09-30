@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/32854007/README.md)
 # JCHRES Slide Template
 
 一般社団法人ヘルスケア研究・教育支援機構（JCHRES）の PowerPoint を PptxGenJS で作るための、法人テンプレートとレイアウト関数です。法人紹介・営業資料、セミナー・研修、学術発表・報告に使います。
